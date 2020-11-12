@@ -1,16 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {SimpleCalculatorComponent} from './simple-calculator/simple-calculator.component';
+import {HttpClientModule} from "@angular/common/http";
+import {SimpleCalculatorService} from "./simple-calculator/simple-calculator.service";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SimpleCalculatorComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SimpleCalculatorService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

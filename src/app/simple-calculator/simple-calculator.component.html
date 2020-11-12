@@ -1,0 +1,105 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Simple Caluclator</h2>
+  <form #f="ngForm"
+        (ngSubmit)="calculate(f.value)"
+        class="ui form">
+    <div class="ui grid">
+      <div class="eight column row">
+        <div class="column">
+          <label for="leftOperand">Left operand</label>
+        </div>
+        <div class="column">
+          <label for="operator">Operator</label>
+        </div>
+        <div class="column">
+          <label for="rightOperand">Right operand</label>
+        </div>
+        <div class="column">
+          <label for="calcResult">Result</label>
+        </div>
+      </div>
+      <div class="eight column row">
+        <div class="column">
+          <input type="number"
+                 id="leftOperand"
+                 placeholder="Enter a number..."
+                 name="leftOperand" ngModel
+                 [(ngModel)]="leftOperand">
+        </div>
+        <div class="column">
+          <select
+            id="operator"
+            name="operator" ngModel
+            [(ngModel)]="operator">
+            <option *ngFor="let operator of operators" [value]="operator">{{operator}}</option>
+          </select>
+        </div>
+        <div class="column">
+          <input type="number"
+                 id="rightOperand"
+                 placeholder="Enter a number..."
+                 name="rightOperand" ngModel
+                 [(ngModel)]="rightOperand">
+        </div>
+        <div class="column">
+          <input type="text"
+                 readonly
+                 id="calcResult"
+                 placeholder="Result will be displayed here ..."
+                 name="result" ngModel
+                 [(ngModel)]="result">
+        </div>
+      </div>
+      <button type="submit" class="ui positive button">Calculate (single)</button>
+      <button class="ui yellow button" type="button" (click)="calculateMultiple()" [(disabled)]="!canDoMultipleCalc">
+        Calculate (multiple)
+      </button>
+      <button class="ui orange button" type="button" (click)="getDummyData()" [(disabled)]="canDoMultipleCalc">Get
+        dummy
+        data
+      </button>
+      <button class="ui red button" type="button" (click)="addToRequest(f.value)">Add request to list</button>
+      <button class="ui button secondary" type="button" (click)="reset()">Reset</button>
+    </div>
+  </form>
+  <div class="ui raised segment" *ngIf="loading"> loading...</div>
+  <div class="ui raised segment" *ngIf="data" class="ui message">
+    <pre>{{ data | json }}</pre>
+  </div>
+  <div *ngIf="testMultipleCalcRequest" class="ui raised segment">
+    <table class="ui celled table">
+      <thead>
+      <tr>
+        <th>Left operand</th>
+        <th>Right operand</th>
+        <th>Operator</th>
+        <th>Result</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let c of testMultipleCalcRequest">
+        <td>{{ c.leftOperand }}</td>
+        <td>{{ c.rightOperand }}</td>
+        <td>{{ c.operator }}</td>
+        <td>Result will be displayed here ...</td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="testMultipleCalcResponse">
+    <table class="ui celled table">
+      <thead>
+      <tr>
+        <th>Left operand</th>
+        <th>Right operand</th>
+        <th>Operator</th>
+        <th>Result</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let c of testMultipleCalcResponse">
+        <td>{{ c.leftOperand }}</td>
+        <td>{{ c.rightOperand }}</td>
+        <td>{{ c.operator }}</td>
+        <td>{{ c.result }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
