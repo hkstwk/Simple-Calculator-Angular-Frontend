@@ -1,0 +1,60 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Single Calculation</h2>
+  <form #f="ngForm" class="ui form" (keydown.enter)="calculate(f.value)">
+    <div class="ui grid">
+      <div class="one column row">
+        <div class="column">
+          <div class="ui inverted segment">
+            <div class="ui inverted fluid labeled input">
+              <div class="ui label">
+                Result
+              </div>
+              <input type="text"
+                     readonly
+                     id="calcResult"
+                     placeholder="..."
+                     name="result" ngModel
+                     [(ngModel)]="result">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="three column row">
+        <div class="column">
+          <label for="leftOperand">Left operand</label>
+          <input type="number"
+                 autofocus
+                 id="leftOperand"
+                 placeholder="Enter a number..."
+                 name="leftOperand" ngModel
+                 [(ngModel)]="leftOperand">
+        </div>
+        <div class="column">
+          <label for="operator">Operator</label>
+          <select
+            id="operator"
+            name="operator" ngModel
+            [(ngModel)]="operator">
+            <option *ngFor="let operator of operators" [value]="operator">{{operator}}</option>
+          </select>
+        </div>
+        <div class="column">
+          <label for="rightOperand">Right operand</label>
+          <input type="number"
+                 id="rightOperand"
+                 placeholder="Enter a number..."
+                 name="rightOperand" ngModel
+                 [(ngModel)]="rightOperand">
+        </div>
+      </div>
+      <div class="twelve column row">
+        <div class="four wide column">
+          <button type="submit" class="ui blue button fluid" (click)="calculate(f.value)">=</button>
+        </div>
+        <div class="four wide column">
+          <button class="ui button basic fluid" type="button" (click)="reset()">New...</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

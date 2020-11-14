@@ -3,8 +3,8 @@ import {Injectable} from '@angular/core';
 // rxjs
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {CalcRequest} from "./CalcRequest";
-import {CalcResponse} from "./CalcResponse";
+import {CalcRequest} from "../dto/CalcRequest";
+import {CalcResponse} from "../dto/CalcResponse";
 
 @Injectable()
 export class SimpleCalculatorService {

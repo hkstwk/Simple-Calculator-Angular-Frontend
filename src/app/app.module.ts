@@ -1,16 +1,17 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import {AppComponent} from './app.component';
-import {SimpleCalculatorComponent} from './simple-calculator/simple-calculator.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {AppComponent} from "./app.component";
 import {HttpClientModule} from "@angular/common/http";
-import {SimpleCalculatorService} from "./simple-calculator/simple-calculator.service";
 import {FormsModule} from "@angular/forms";
+import {MultipleCalculationsComponent} from "./multiple-calculations/multiple-calculations.component";
+import {SingleCalculationComponent} from "./single-calculation/single-calculation.component";
+import {SimpleCalculatorService} from "./service/simple-calculator.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleCalculatorComponent
+    SingleCalculationComponent,
+    MultipleCalculationsComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +19,7 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule
   ],
   providers: [SimpleCalculatorService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
