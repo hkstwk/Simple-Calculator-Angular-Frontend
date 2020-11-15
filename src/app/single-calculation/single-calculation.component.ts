@@ -5,7 +5,7 @@ import {SimpleCalculatorService} from "../service/simple-calculator.service";
 import {delay} from "rxjs/internal/operators";
 
 @Component({
-    selector: 'app-calculator',
+    selector: 'app-single-calculation',
     templateUrl: 'single-calculation.component.html',
     styleUrls: ['single-calculation.component.css']
 })
@@ -25,7 +25,7 @@ export class SingleCalculationComponent implements OnInit {
     }
 
     calculate(data: CalcResponse): void {
-        this.calcdata.result = "... simulating some serious calculations by hard coded delay of 2,5 seconds ...";
+        this.calcdata.result = "... simulating some insane complex calculation by delaying 2,5 seconds ...";
         this.calcService.doSingleCalculation(data)
           .pipe(delay(2500))
           .subscribe({
