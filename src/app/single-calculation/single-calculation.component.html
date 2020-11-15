@@ -14,7 +14,7 @@
                      id="calcResult"
                      placeholder="..."
                      name="result" ngModel
-                     [(ngModel)]="result">
+                     [(ngModel)]="calcdata.result">
             </div>
           </div>
         </div>
@@ -27,14 +27,14 @@
                  id="leftOperand"
                  placeholder="Enter a number..."
                  name="leftOperand" ngModel
-                 [(ngModel)]="leftOperand">
+                 [(ngModel)]="calcdata.leftOperand">
         </div>
         <div class="column">
           <label for="operator">Operator</label>
           <select
             id="operator"
             name="operator" ngModel
-            [(ngModel)]="operator">
+            [(ngModel)]="calcdata.operator">
             <option *ngFor="let operator of operators" [value]="operator">{{operator}}</option>
           </select>
         </div>
@@ -44,15 +44,15 @@
                  id="rightOperand"
                  placeholder="Enter a number..."
                  name="rightOperand" ngModel
-                 [(ngModel)]="rightOperand">
+                 [(ngModel)]="calcdata.rightOperand">
         </div>
       </div>
       <div class="two column row">
         <div class="column">
-          <button type="submit" class="ui blue button fluid" (click)="calculate(f.value)">=</button>
+          <button type="submit" class="ui blue button fluid" (click)="calculate(f.value)">Calculate (single)</button>
         </div>
         <div class="column">
-          <button class="ui button basic fluid" type="button" (click)="reset()">New...</button>
+          <button class="ui button basic fluid" type="button" (click)="reset()">New random input...</button>
         </div>
       </div>
     </div>

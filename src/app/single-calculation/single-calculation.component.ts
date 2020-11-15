@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {HttpErrorResponse} from "@angular/common/http";
 import {CalcResponse} from "../dto/CalcResponse";
 import {SimpleCalculatorService} from "../service/simple-calculator.service";
+import {delay} from "rxjs/internal/operators";
 
 @Component({
     selector: 'app-calculator',
@@ -11,49 +12,42 @@ import {SimpleCalculatorService} from "../service/simple-calculator.service";
 
 export class SingleCalculationComponent implements OnInit {
 
-    operators = ['+', '-', '*', '/', '% (not supported; will show error handling'];
+    private operators = ['+', '-', '*', '/', '% (not supported; will show error handling'];
 
-    public loading: boolean = false;
-    public data: any;
-
-    public leftOperand: number;
-    public rightOperand: number;
-    public operator: string;
-    public result: string;
+    public calcdata: CalcResponse;
 
     constructor(private calcService: SimpleCalculatorService) {
+      this.calcdata = new CalcResponse();
       this.reset();
     }
-
 
     ngOnInit() {
     }
 
-    calculate(data: any): void {
-        this.loading = true;
+    calculate(data: CalcResponse): void {
+        this.calcdata.result = "... simulating some serious calculations by hard coded delay of 2,5 seconds ...";
         this.calcService.doSingleCalculation(data)
-            .subscribe(
-                resp => this.handleResp(resp),
-                error => this.handleError(error))
-        this.loading = false;
+          .pipe(delay(2500))
+          .subscribe({
+                next: this.handleResp.bind(this),
+                error: this.handleError.bind(this)
+          })
     }
 
     private handleResp(resp: CalcResponse): void {
-        this.result = resp.result;
+        this.calcdata.result = resp.result;
         console.log("responseBody {}", resp);
-        console.log("result set to ", this.result);
     }
-
 
     private handleError(err: HttpErrorResponse): void {
         console.log(err);
     }
 
     reset(): void {
-      this.leftOperand = Math.floor((Math.random()*100));
-      this.rightOperand = Math.floor((Math.random()*10));
-      this.operator = this.operators[Math.floor(Math.random()*5)];
-      this.result = "";
+      this.calcdata.leftOperand = Math.floor((Math.random()*100));
+      this.calcdata.operator= this.operators[Math.floor(Math.random()*5)];
+      this.calcdata.rightOperand = Math.floor((Math.random()*10));
+      this.calcdata.result = "";
     }
 
 }
