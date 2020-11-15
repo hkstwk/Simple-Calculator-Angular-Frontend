@@ -1,6 +1,6 @@
 <div class="ui raised segment">
   <h2 class="ui header">Single Calculation</h2>
-  <form #f="ngForm" class="ui form" (keydown.enter)="calculate(f.value)">
+  <form #f="ngForm" class="ui form">
     <div class="ui grid">
       <div class="one column row">
         <div class="column">
@@ -47,11 +47,11 @@
                  [(ngModel)]="rightOperand">
         </div>
       </div>
-      <div class="twelve column row">
-        <div class="four wide column">
+      <div class="two column row">
+        <div class="column">
           <button type="submit" class="ui blue button fluid" (click)="calculate(f.value)">=</button>
         </div>
-        <div class="four wide column">
+        <div class="column">
           <button class="ui button basic fluid" type="button" (click)="reset()">New...</button>
         </div>
       </div>
