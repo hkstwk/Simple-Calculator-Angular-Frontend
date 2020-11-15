@@ -13,7 +13,7 @@ import {Utils} from "../util/utils";
 
 export class SingleCalculationComponent implements OnInit {
 
-    private operators = ['+', '-', '*', '/', '% (not supported; will show error handling'];
+    public operators = Utils.OPERATORS;
 
     public calcdata: CalcResponse;
 

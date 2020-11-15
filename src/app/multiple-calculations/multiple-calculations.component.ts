@@ -11,7 +11,7 @@ import {Utils} from "../util/utils";
 })
 export class MultipleCalculationsComponent implements OnInit {
 
-  operators = ['+', '-', '*', '/', '% (not supported; will show error handling'];
+  public operators = Utils.OPERATORS;
 
   public numberOfRandomData : number = Utils.NUMBER_OF_CALCULATIONS;
   public canDoMultipleCalc: boolean = false;
@@ -49,7 +49,6 @@ export class MultipleCalculationsComponent implements OnInit {
 
   private handleMultiResp(resp: Array<CalcResponse>): void {
     console.log("responseBody {}", resp);
-    this.testMultipleCalcRequest = null;
     this.canDoMultipleCalc = false;
     this.multipleCalcData = resp;
   }

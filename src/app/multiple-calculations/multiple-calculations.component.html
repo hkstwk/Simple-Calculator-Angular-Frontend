@@ -51,15 +51,15 @@
           <thead>
           <tr>
             <th>Left operand</th>
-            <th>Right operand</th>
             <th>Operator</th>
+            <th>Right operand</th>
             <th>Result</th>
           </tr>
           </thead>
           <tr *ngFor="let c of multipleCalcData">
             <td>{{ c.leftOperand }}</td>
-            <td>{{ c.rightOperand }}</td>
             <td>{{ c.operator }}</td>
+            <td>{{ c.rightOperand }}</td>
             <td>{{ c.result }}</td>
           </tr>
         </table>

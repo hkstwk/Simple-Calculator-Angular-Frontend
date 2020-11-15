@@ -1,7 +1,7 @@
 import {OnInit} from "@angular/core";
 import {CalcResponse} from "../dto/CalcResponse";
 
-export class Utils implements OnInit {
+export class Utils {
 
   public static OPERATORS : string [] = ['+', '-', '*', '/', '% (not supported; will show error handling'];
   public static NUMBER_OF_CALCULATIONS: number = 3;
@@ -21,5 +21,4 @@ export class Utils implements OnInit {
     }
     return dummyData;
   }
-
 }
