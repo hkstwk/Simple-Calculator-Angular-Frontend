@@ -1,0 +1,78 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Multiple calculations</h2>
+  <form #f="ngForm" class="ui form">
+    <div class="ui grid">
+
+
+      <div class="three column row">
+        <div class="column">
+          <label for="leftOperand">Left operand</label>
+          <input type="number"
+                 autofocus
+                 id="leftOperand"
+                 placeholder="Enter a number..."
+                 name="leftOperand" ngModel
+                 [(ngModel)]="calcdata.leftOperand">
+        </div>
+        <div class="column">
+          <label for="operator">Operator</label>
+          <select
+            id="operator"
+            name="operator" ngModel
+            [(ngModel)]="calcdata.operator">
+            <option *ngFor="let operator of operators" [value]="operator">{{operator}}</option>
+          </select>
+        </div>
+        <div class="column">
+          <label for="rightOperand">Right operand</label>
+          <input type="number"
+                 id="rightOperand"
+                 placeholder="Enter a number..."
+                 name="rightOperand" ngModel
+                 [(ngModel)]="calcdata.rightOperand">
+        </div>
+      </div>
+
+      <div class="three column row">
+        <div class="column">
+          <button class="ui blue button fluid" type="button" (click)="getDummyData()"
+                  [(disabled)]="canDoMultipleCalc">Add random (10x)</button>
+        </div>
+        <div class="column">
+          <button class="ui simple button fluid" type="button" (click)="addToRequest(f.value)">Add calculation</button>
+        </div>
+        <div class="column">
+          <button class="ui button secondary fluid" type="button" (click)="reset()">Reset</button>
+        </div>
+      </div>
+
+      <div *ngIf="multipleCalcData" class="one column row">
+        <table class="ui celled table">
+          <thead>
+          <tr>
+            <th>Left operand</th>
+            <th>Right operand</th>
+            <th>Operator</th>
+            <th>Result</th>
+          </tr>
+          </thead>
+          <tr *ngFor="let c of multipleCalcData">
+            <td>{{ c.leftOperand }}</td>
+            <td>{{ c.rightOperand }}</td>
+            <td>{{ c.operator }}</td>
+            <td>{{ c.result }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div *ngIf="multipleCalcData" class="one column row">
+        <div class="column">
+          <button class="ui blue button fluid" type="button" (click)="calculateMultiple()"
+                  [(disabled)]="!canDoMultipleCalc">
+            Calculate {{ multipleCalcData.length }} x
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
