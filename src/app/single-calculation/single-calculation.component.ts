@@ -3,6 +3,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {CalcResponse} from "../dto/CalcResponse";
 import {SimpleCalculatorService} from "../service/simple-calculator.service";
 import {delay} from "rxjs/internal/operators";
+import {Utils} from "../util/utils";
 
 @Component({
     selector: 'app-single-calculation',
@@ -17,8 +18,7 @@ export class SingleCalculationComponent implements OnInit {
     public calcdata: CalcResponse;
 
     constructor(private calcService: SimpleCalculatorService) {
-      this.calcdata = new CalcResponse();
-      this.reset();
+      this.calcdata = Utils.generateRandomCalculation();
     }
 
     ngOnInit() {
@@ -44,10 +44,7 @@ export class SingleCalculationComponent implements OnInit {
     }
 
     reset(): void {
-      this.calcdata.leftOperand = Math.floor((Math.random()*100));
-      this.calcdata.operator= this.operators[Math.floor(Math.random()*5)];
-      this.calcdata.rightOperand = Math.floor((Math.random()*10));
-      this.calcdata.result = "";
+      this.calcdata = Utils.generateRandomCalculation();
     }
 
 }

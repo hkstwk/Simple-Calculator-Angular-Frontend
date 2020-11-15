@@ -35,8 +35,8 @@
 
       <div class="three column row">
         <div class="column">
-          <button class="ui blue button fluid" type="button" (click)="getDummyData()"
-                  [(disabled)]="canDoMultipleCalc">Add random (10x)</button>
+          <button class="ui blue button fluid" type="button" (click)="getDummyData()">
+            Add random ({{ numberOfRandomData }})</button>
         </div>
         <div class="column">
           <button class="ui simple button fluid" type="button" (click)="addToRequest(f.value)">Add calculation</button>
@@ -65,11 +65,12 @@
         </table>
       </div>
 
+
       <div *ngIf="multipleCalcData" class="one column row">
         <div class="column">
           <button class="ui blue button fluid" type="button" (click)="calculateMultiple()"
                   [(disabled)]="!canDoMultipleCalc">
-            Calculate {{ multipleCalcData.length }} x
+            Do {{ multipleCalcData.length }} calculations
           </button>
         </div>
       </div>
