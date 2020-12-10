@@ -1,20 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimpleCalculatorComponent } from './single-calculation.component';
+import { SingleCalculationComponent } from './single-calculation.component';
+import {SimpleCalculatorService} from "../service/simple-calculator.service";
+import {HttpHandler} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
-describe('SimpleCalculatorComponent', () => {
-  let component: SimpleCalculatorComponent;
-  let fixture: ComponentFixture<SimpleCalculatorComponent>;
+describe('SingleColculationComponent', () => {
+  let component: SingleCalculationComponent;
+  let fixture: ComponentFixture<SingleCalculationComponent>;
+  let service: SimpleCalculatorService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleCalculatorComponent ]
+      declarations: [ SingleCalculationComponent ],
+      providers: [SimpleCalculatorService, HttpClient, HttpHandler],
+      imports: [ FormsModule],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleCalculatorComponent);
+    fixture = TestBed.createComponent(SingleCalculationComponent);
+    service = TestBed.inject(SimpleCalculatorService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,4 +30,7 @@ describe('SimpleCalculatorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
 });

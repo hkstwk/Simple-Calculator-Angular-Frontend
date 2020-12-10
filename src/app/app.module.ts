@@ -18,8 +18,12 @@ import {SimpleCalculatorService} from "./service/simple-calculator.service";
     FormsModule,
     HttpClientModule
   ],
-  providers: [SimpleCalculatorService],
-  bootstrap: [AppComponent],
+  providers: [
+    SimpleCalculatorService
+  ],
+  bootstrap: [
+    AppComponent
+  ],
 })
 export class AppModule {
 }
