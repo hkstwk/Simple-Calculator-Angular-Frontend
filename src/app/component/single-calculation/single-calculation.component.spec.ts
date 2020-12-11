@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SingleCalculationComponent } from './single-calculation.component';
-import {SimpleCalculatorService} from "../service/simple-calculator.service";
+import {SimpleCalculatorService} from "../../service/simple-calculator.service";
 import {HttpHandler} from "@angular/common/http";
 import {HttpClient} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";

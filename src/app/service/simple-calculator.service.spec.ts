@@ -4,29 +4,28 @@
 import {TestBed, getTestBed} from "@angular/core/testing";
 import {HttpTestingController, HttpClientTestingModule} from "@angular/common/http/testing";
 import {SimpleCalculatorService} from "./simple-calculator.service";
-import {ICalcResponse} from "../dto/CalcResponse";
-import {CalcRequest} from "../dto/CalcRequest";
+import {IPayload} from "../interface/ipayload";
 
-export const mockAddRequest: CalcRequest = {
+export const mockAddRequest: IPayload = {
   leftOperand: 33,
   rightOperand: 22,
   operator: "+"
 }
 
-export const mockAddResult: ICalcResponse = {
+export const mockAddResult: IPayload = {
   leftOperand: 33,
   rightOperand: 22,
   operator: "+",
   result: "55"
 }
 
-export const mockDivideByZeroRequest: CalcRequest = {
+export const mockDivideByZeroRequest: IPayload = {
   leftOperand: 33,
   rightOperand: 0,
   operator: "/"
 }
 
-export const mockDivideByZeroResponse: ICalcResponse = {
+export const mockDivideByZeroResponse: IPayload = {
   leftOperand: 33,
   rightOperand: 0,
   operator: "0",
@@ -61,16 +60,16 @@ describe("SimpleCalculatorService unit test", () => {
   it("adds two numbers using POST request to /single endpoint", () => {
 
     // Arrange
-    let testRequestBody : CalcRequest = mockAddRequest;
+    let testRequestBody : IPayload = mockAddRequest;
     console.log("Test input requestbody: {}", testRequestBody);
 
     // Act
     service.doSingleCalculation(testRequestBody)
-      .subscribe(data => {
-          console.log("Returned data: {}", data);
+      .subscribe(resp => {
+          console.log("Returned data: {}", resp);
           console.log("Returned mockAddResult: {}", mockAddResult);
           // Assert result
-          expect(data).toEqual(mockAddResult)
+          expect(resp).toEqual(mockAddResult)
       });
 
     // Assert
@@ -90,16 +89,16 @@ describe("SimpleCalculatorService unit test", () => {
   it("divides by zero and returns exception in result", () => {
 
     // Arrange
-    let testRequestBody : CalcRequest = mockDivideByZeroRequest;
+    let testRequestBody : IPayload = mockDivideByZeroRequest;
     console.log("Test input requestbody: {}", testRequestBody);
 
     // Act
     service.doSingleCalculation(testRequestBody)
-      .subscribe(data => {
-        console.log("Returned data: {}", data);
+      .subscribe(resp => {
+        console.log("Returned data: {}", resp);
         console.log("Returned mockDivideByZeroResult: {}", mockDivideByZeroResponse);
         // Assert result
-        expect(data).toEqual(mockDivideByZeroResponse)
+        expect(resp).toEqual(mockDivideByZeroResponse)
       });
 
     // Assert

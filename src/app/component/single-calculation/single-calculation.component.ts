@@ -1,10 +1,9 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HttpErrorResponse} from "@angular/common/http";
 import {SimpleCalculatorService} from "../../service/simple-calculator.service";
 import {delay} from "rxjs/internal/operators";
 import {Utils} from "../../util/utils";
 import {IPayload} from "../../interface/ipayload";
-
 
 
 @Component({
