@@ -1,28 +1,25 @@
 import {Injectable} from '@angular/core';
-
-// rxjs
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {CalcRequest} from "../dto/CalcRequest";
-import {CalcResponse} from "../dto/CalcResponse";
+import {IPayload} from "../interface/ipayload";
 
 @Injectable()
 export class SimpleCalculatorService {
 
-    private readonly URL = "http://localhost:8080/single";
-    private readonly URL2 = "http://localhost:8080/multiple";
+    private readonly URL_SINGLE = "http://localhost:8080/single";
+    private readonly URL_MULTIPLE = "http://localhost:8080/multiple";
 
     constructor(protected httpClient: HttpClient) {
     }
 
-    public doSingleCalculation(request: CalcRequest): Observable<CalcResponse> {
+    public doSingleCalculation(request: IPayload): Observable<IPayload> {
         return this.httpClient
-            .post<CalcResponse>(this.URL, request);
+            .post<IPayload>(this.URL_SINGLE, request);
     }
 
-    public doMultipleCalculations(request: Array<CalcRequest>): Observable<Array<CalcResponse>> {
+    public doMultipleCalculations(request: IPayload[]): Observable<IPayload[]> {
         return this.httpClient
-            .post<Array<CalcResponse>>(this.URL2, request);
+            .post<IPayload[]>(this.URL_MULTIPLE, request);
     }
 
 }

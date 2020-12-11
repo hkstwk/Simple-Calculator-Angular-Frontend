@@ -4,7 +4,7 @@
 import {TestBed, getTestBed} from "@angular/core/testing";
 import {HttpTestingController, HttpClientTestingModule} from "@angular/common/http/testing";
 import {SimpleCalculatorService} from "./simple-calculator.service";
-import {CalcResponse} from "../dto/CalcResponse";
+import {ICalcResponse} from "../dto/CalcResponse";
 import {CalcRequest} from "../dto/CalcRequest";
 
 export const mockAddRequest: CalcRequest = {
@@ -13,7 +13,7 @@ export const mockAddRequest: CalcRequest = {
   operator: "+"
 }
 
-export const mockAddResult: CalcResponse = {
+export const mockAddResult: ICalcResponse = {
   leftOperand: 33,
   rightOperand: 22,
   operator: "+",
@@ -26,7 +26,7 @@ export const mockDivideByZeroRequest: CalcRequest = {
   operator: "/"
 }
 
-export const mockDivideByZeroResponse: CalcResponse = {
+export const mockDivideByZeroResponse: ICalcResponse = {
   leftOperand: 33,
   rightOperand: 0,
   operator: "0",

@@ -1,31 +1,28 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {HttpErrorResponse} from "@angular/common/http";
-import {CalcResponse} from "../dto/CalcResponse";
-import {SimpleCalculatorService} from "../service/simple-calculator.service";
-import {Utils} from "../util/utils";
+import {SimpleCalculatorService} from "../../service/simple-calculator.service";
+import {Utils} from "../../util/utils";
+import {IPayload} from "../../interface/ipayload";
 
 @Component({
   selector: 'app-multiple-calculations',
-  templateUrl: './multiple-calculations.component.html',
-  styleUrls: ['./multiple-calculations.component.css']
+  templateUrl: 'multiple-calculations.component.html',
+  styleUrls: ['multiple-calculations.component.css']
 })
-export class MultipleCalculationsComponent implements OnInit {
+export class MultipleCalculationsComponent {
 
   public operators = Utils.OPERATORS;
 
   public numberOfRandomData : number = Utils.NUMBER_OF_CALCULATIONS;
   public canDoMultipleCalc: boolean = false;
-  public calcdata: CalcResponse;
-  public multipleCalcData: CalcResponse[];
+  public calcdata: IPayload;
+  public multipleCalcData: IPayload[];
 
   constructor(private calcService: SimpleCalculatorService) {
     this.calcdata = Utils.generateRandomCalculation();
   }
 
-  ngOnInit() {
-  }
-
-  addToRequest(data: CalcResponse) {
+  addToRequest(data: IPayload) {
 
     // If there is no input data then initialize array with data
     if (!this.canDoMultipleCalc) {
@@ -42,12 +39,12 @@ export class MultipleCalculationsComponent implements OnInit {
   calculateMultiple(): void {
     this.calcService.doMultipleCalculations(this.multipleCalcData)
       .subscribe({
-        next: this.handleMultiResp.bind(this),
-        error: this.handleMultiError.bind(this)
+        next: (resp: IPayload[]) => this.handleMultiResp(resp),
+        error: (err) => this.handleMultiError(err)
       })
   }
 
-  private handleMultiResp(resp: Array<CalcResponse>): void {
+  private handleMultiResp(resp: IPayload[]): void {
     console.log("responseBody {}", resp);
     this.canDoMultipleCalc = false;
     this.multipleCalcData = resp;

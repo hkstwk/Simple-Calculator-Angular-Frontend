@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {SingleCalculationComponent} from "./single-calculation/single-calculation.component";
-import {MultipleCalculationsComponent} from "./multiple-calculations/multiple-calculations.component";
+import {SingleCalculationComponent} from "./component/single-calculation/single-calculation.component";
+import {MultipleCalculationsComponent} from "./component/multiple-calculations/multiple-calculations.component";
 import {Component} from "@angular/core";
 
 describe('AppComponent', () => {

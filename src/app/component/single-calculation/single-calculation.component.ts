@@ -1,40 +1,38 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpErrorResponse} from "@angular/common/http";
-import {CalcResponse} from "../dto/CalcResponse";
-import {SimpleCalculatorService} from "../service/simple-calculator.service";
+import {SimpleCalculatorService} from "../../service/simple-calculator.service";
 import {delay} from "rxjs/internal/operators";
-import {Utils} from "../util/utils";
+import {Utils} from "../../util/utils";
+import {IPayload} from "../../interface/ipayload";
+
+
 
 @Component({
     selector: 'app-single-calculation',
     templateUrl: 'single-calculation.component.html',
     styleUrls: ['single-calculation.component.css']
 })
-
-export class SingleCalculationComponent implements OnInit {
+export class SingleCalculationComponent {
 
     public operators = Utils.OPERATORS;
 
-    public calcdata: CalcResponse;
+    public calcdata: IPayload;
 
     constructor(private calcService: SimpleCalculatorService) {
       this.calcdata = Utils.generateRandomCalculation();
     }
 
-    ngOnInit() {
-    }
-
-    calculate(data: CalcResponse): void {
+    calculate(data: IPayload): void {
         this.calcdata.result = "... simulating some insane complex calculation by delaying 2,5 seconds ...";
         this.calcService.doSingleCalculation(data)
-          .pipe(delay(2500))
+          .pipe(delay(1000))
           .subscribe({
-                next: this.handleResp.bind(this),
-                error: this.handleError.bind(this)
+                next: (resp: IPayload) => this.handleResp(resp),
+                error: (err) => this.handleError(err)
           })
     }
 
-    private handleResp(resp: CalcResponse): void {
+    private handleResp(resp: IPayload): void {
         this.calcdata.result = resp.result;
         console.log("responseBody {}", resp);
     }
