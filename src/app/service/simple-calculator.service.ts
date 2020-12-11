@@ -13,11 +13,13 @@ export class SimpleCalculatorService {
     }
 
     public doSingleCalculation(request: IPayload): Observable<IPayload> {
+      console.log(request);
         return this.httpClient
             .post<IPayload>(this.URL_SINGLE, request);
     }
 
     public doMultipleCalculations(request: IPayload[]): Observable<IPayload[]> {
+      console.log(request);
         return this.httpClient
             .post<IPayload[]>(this.URL_MULTIPLE, request);
     }

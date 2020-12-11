@@ -9,8 +9,7 @@ export class Utils {
     return {
       leftOperand: Math.floor((Math.random() * 100)),
       rightOperand: Math.floor((Math.random() * 10)),
-      operator: this.OPERATORS[Math.floor(Math.random() * 5)],
-      result: ""
+      operator: this.OPERATORS[Math.floor(Math.random() * 5)]
     }
   };
 
